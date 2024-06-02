@@ -4,7 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Trivia Challenge</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+            overflow: hidden; /* Prevent double scrollbars */
+        }
+
+        #game {
+            text-align: center;
+            width: 300px;
+            height: 100%;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        #result-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #result-container p {
+            margin: 5px 0;
+        }
+
+        #result-container hr {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <div id="game">
@@ -20,6 +73,7 @@
             <h2>Your Score: <span id="score"></span></h2>
             <button id="restart-btn" class="btn">Play Again</button>
         </div>
+        <div id="result-container" class="hide"></div>
     </div>
     <script src="script.js"></script>
 </body>
