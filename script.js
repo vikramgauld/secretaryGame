@@ -6,43 +6,97 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const scoreContainer = document.getElementById('score-container');
 const scoreElement = document.getElementById('score');
 
-let shuffledQuestions, currentQuestionIndex, score;
+let currentQuestionIndex, score;
 
 const questions = [
     {
-        question: 'What year was our school founded?',
+        question: '1. What year was the Manhasset Common School District established?',
         answers: [
-            { text: '1995', correct: false },
-            { text: '2001', correct: true },
-            { text: '2010', correct: false },
-            { text: '1987', correct: false }
+            { text: '1733', correct: false },
+            { text: '1762', correct: false },
+            { text: '1813', correct: true },
+            { text: '1866', correct: false }
         ]
     },
     {
-        question: 'Who is the principal of our school?',
+        question: '2. How many people graduated from the Manhasset High School class of 1921?',
         answers: [
-            { text: 'Mr. Smith', correct: false },
-            { text: 'Mrs. Johnson', correct: false },
-            { text: 'Dr. Brown', correct: true },
-            { text: 'Ms. Lee', correct: false }
+            { text: '0', correct: false },
+            { text: '2', correct: true },
+            { text: '36', correct: false },
+            { text: '225', correct: false }
         ]
     },
     {
-        question: 'Which sport did our school team win a championship in last year?',
+        question: '3. What is the name of the official Manhasset High School song?',
         answers: [
-            { text: 'Basketball', correct: true },
-            { text: 'Soccer', correct: false },
-            { text: 'Baseball', correct: false },
-            { text: 'Swimming', correct: false }
+            { text: '"O Stately Tower of Manhasset"', correct: true },
+            { text: '"The Orange and Blue"', correct: false },
+            { text: '"Our School, Our Pride"', correct: false },
+            { text: '"Forever Manhasset"', correct: false }
         ]
     },
     {
-        question: 'What\'s the name of our school\'s mascot?',
+        question: '4. Manhasset was the first high school on Long Island to introduce which sport?',
         answers: [
-            { text: 'Tiger', correct: true },
-            { text: 'Eagle', correct: false },
-            { text: 'Lion', correct: false },
-            { text: 'Bear', correct: false }
+            { text: 'Ice hockey', correct: false },
+            { text: 'Bowling', correct: false },
+            { text: 'Badminton', correct: false },
+            { text: 'Lacrosse', correct: true }
+        ]
+    },
+    {
+        question: '5. What is the official Manhasset High School motto?',
+        answers: [
+            { text: 'Strive for Greatness', correct: false },
+            { text: 'Excellence Through Effort', correct: true },
+            { text: 'Knowledge is Power', correct: false },
+            { text: 'Aim High', correct: false }
+        ]
+    },
+    {
+        question: '6. When will the student government officer voting occur?',
+        answers: [
+            { text: 'Thursday, June 6', correct: false },
+            { text: 'Friday, June 7', correct: true },
+            { text: 'Monday, June 10', correct: false },
+            { text: 'Wednesday, June 12', correct: false }
+        ]
+    },
+    {
+        question: '7. Why is it important to vote for a reliable student government secretary?',
+        answers: [
+            { text: 'To ensure accurate meeting minutes are kept', correct: true },
+            { text: 'To have more school events', correct: false },
+            { text: 'To increase school funding', correct: false },
+            { text: 'To improve sports team performance', correct: false }
+        ]
+    },
+    {
+        question: '8. What quality is most important for a student government secretary to have?',
+        answers: [
+            { text: 'Athletic ability', correct: false },
+            { text: 'Organizational skills', correct: true },
+            { text: 'Artistic talent', correct: false },
+            { text: 'Proficiency in playing the trumpet', correct: false }
+        ]
+    },
+    {
+        question: '9. Which of the following is NOT one of Vikram Gauld\'s skills?',
+        answers: [
+            { text: 'Keeping precise meeting attendance on Google Sheets', correct: false },
+            { text: 'Creating fun games like this one', correct: false },
+            { text: 'Managing Canvas pages', correct: false },
+            { text: 'Being insane at rhyming', correct: true }
+        ]
+    },
+    {
+        question: '10. Who will you vote for Class Secretary?',
+        answers: [
+            { text: 'Vikram Gauld', correct: true },
+            { text: 'Vikram Gauld', correct: true },
+            { text: 'Vikram Gauld', correct: true },
+            { text: 'Vikram Gauld', correct: true }
         ]
     }
 ];
@@ -54,7 +108,6 @@ function startGame() {
     startButton.classList.add('hide');
     restartButton.classList.add('hide');
     scoreContainer.classList.add('hide');
-    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
     currentQuestionIndex = 0;
     score = 0;
     questionContainer.classList.remove('hide');
@@ -63,7 +116,7 @@ function startGame() {
 
 function setNextQuestion() {
     resetState();
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
+    showQuestion(questions[currentQuestionIndex]);
 }
 
 function showQuestion(question) {
@@ -93,7 +146,7 @@ function selectAnswer(e) {
         score++;
     }
     currentQuestionIndex++;
-    if (currentQuestionIndex < shuffledQuestions.length) {
+    if (currentQuestionIndex < questions.length) {
         setNextQuestion();
     } else {
         endGame();
