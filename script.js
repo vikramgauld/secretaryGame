@@ -5,8 +5,9 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const scoreContainer = document.getElementById('score-container');
 const scoreElement = document.getElementById('score');
+const resultContainer = document.createElement('div'); // Container for results
 
-let currentQuestionIndex, score;
+let currentQuestionIndex, score, results;
 
 const questions = [
     {
@@ -108,8 +109,10 @@ function startGame() {
     startButton.classList.add('hide');
     restartButton.classList.add('hide');
     scoreContainer.classList.add('hide');
+    resultContainer.innerHTML = ''; // Clear previous results
     currentQuestionIndex = 0;
     score = 0;
+    results = [];
     questionContainer.classList.remove('hide');
     setNextQuestion();
 }
@@ -142,6 +145,12 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
+    results.push({
+        question: questions[currentQuestionIndex].question,
+        correct: correct,
+        selectedAnswer: selectedButton.innerText,
+        correctAnswer: questions[currentQuestionIndex].answers.find(a => a.correct).text
+    });
     if (correct) {
         score++;
     }
@@ -158,4 +167,19 @@ function endGame() {
     scoreContainer.classList.remove('hide');
     scoreElement.innerText = score;
     restartButton.classList.remove('hide');
+    displayResults();
+}
+
+function displayResults() {
+    results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.innerHTML = `
+            <p><strong>${result.question}</strong></p>
+            <p>Your answer: ${result.selectedAnswer} - ${result.correct ? 'Correct' : 'Wrong'}</p>
+            ${!result.correct ? `<p>Correct answer: ${result.correctAnswer}</p>` : ''}
+            <hr>
+        `;
+        resultContainer.appendChild(resultElement);
+    });
+    document.body.appendChild(resultContainer);
 }
