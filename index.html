@@ -12,14 +12,18 @@
             align-items: center;
             height: 100vh;
             background-color: #f3f4f6;
+            margin: 0; /* Remove default margin */
             overflow: hidden; /* Prevent double scrollbars */
         }
 
         #game {
             text-align: center;
-            width: 300px;
+            width: 100%;
+            max-width: 400px;
             height: 100%;
             overflow-y: auto; /* Enable vertical scrolling */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in width/height */
         }
 
         .hide {
@@ -71,9 +75,9 @@
         </div>
         <div id="score-container" class="hide">
             <h2>Your Score: <span id="score"></span></h2>
+            <div id="result-container" class="hide"></div>
             <button id="restart-btn" class="btn">Play Again</button>
         </div>
-        <div id="result-container" class="hide"></div>
     </div>
     <script src="script.js"></script>
 </body>
