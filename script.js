@@ -130,7 +130,6 @@ function showQuestion(question) {
         button.innerText = answer.text;
         button.classList.add('btn');
         button.addEventListener('click', selectAnswer);
-        button.addEventListener('touchstart', (e) => e.preventDefault()); // Prevents zoom on double-tap
         answerButtonsElement.appendChild(button);
     });
 }
@@ -175,7 +174,7 @@ function displayResults() {
         const resultElement = document.createElement('div');
         resultElement.innerHTML = `
             <p><strong>${result.question}</strong></p>
-            <p>Your answer: ${result.selectedAnswer} - ${result.correct ? 'Correct' : 'Wrong'}</p>
+            <p class="${result.correct ? 'correct' : 'wrong'}">Your answer: ${result.selectedAnswer}</p>
             ${!result.correct ? `<p>Correct answer: ${result.correctAnswer}</p>` : ''}
             <hr>
         `;
