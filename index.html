@@ -13,16 +13,24 @@
             height: 100vh;
             background-color: #f3f4f6;
             margin: 0;
+            overflow: hidden; /* Prevent double scrollbars */
+        }
+
+        #game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto; /* Enable vertical scrolling */
         }
 
         #game {
             text-align: center;
             width: 100%;
             max-width: 400px;
-            height: 100%;
-            overflow-y: auto;
             padding: 20px;
-            box-sizing: border-box;
+            box-sizing: border-box; /* Ensure padding is included in width/height */
         }
 
         .hide {
@@ -63,19 +71,21 @@
     </style>
 </head>
 <body>
-    <div id="game">
-        <h1>Manhasset Schools & Class Secretary Trivia Game</h1>
-        <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-container"></div>
-        </div>
-        <div id="start-container">
-            <button id="start-btn" class="btn">Start</button>
-        </div>
-        <div id="score-container" class="hide">
-            <h2>Your Score: <span id="score"></span></h2>
-            <div id="result-container" class="hide"></div>
-            <button id="restart-btn" class="btn">Play Again</button>
+    <div id="game-container">
+        <div id="game">
+            <h1>Manhasset Schools & Class Secretary Trivia Game</h1>
+            <div id="question-container" class="hide">
+                <div id="question">Question</div>
+                <div id="answer-buttons" class="btn-container"></div>
+            </div>
+            <div id="start-container">
+                <button id="start-btn" class="btn">Start</button>
+            </div>
+            <div id="score-container" class="hide">
+                <h2>Your Score: <span id="score"></span></h2>
+                <div id="result-container" class="hide"></div>
+                <button id="restart-btn" class="btn">Play Again</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
