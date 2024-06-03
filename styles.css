@@ -56,6 +56,14 @@ body {
     background-color: #003d99; /* Temporary active state */
 }
 
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+
 #result-container {
     margin-top: 20px;
     text-align: left;
