@@ -174,8 +174,8 @@ function displayResults() {
         const resultElement = document.createElement('div');
         resultElement.innerHTML = `
             <p><strong>${result.question}</strong></p>
-            <p class="${result.correct ? 'correct' : 'wrong'}">Your answer: ${result.selectedAnswer}</p>
-            ${!result.correct ? `<p>Correct answer: ${result.correctAnswer}</p>` : ''}
+            <p>Your answer: <span class="${result.correct ? 'correct-answer' : 'wrong-answer'}">${result.selectedAnswer}</span></p>
+            ${!result.correct ? `<p>Correct answer: <span class="correct-answer">${result.correctAnswer}</span></p>` : ''}
             <hr>
         `;
         resultContainer.appendChild(resultElement);
