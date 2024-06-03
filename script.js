@@ -5,7 +5,7 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const scoreContainer = document.getElementById('score-container');
 const scoreElement = document.getElementById('score');
-const resultContainer = document.createElement('div'); // Container for results
+const resultContainer = document.getElementById('result-container'); // Container for results
 
 let currentQuestionIndex, score, results;
 
@@ -110,6 +110,7 @@ function startGame() {
     restartButton.classList.add('hide');
     scoreContainer.classList.add('hide');
     resultContainer.innerHTML = ''; // Clear previous results
+    resultContainer.classList.add('hide'); // Hide result container at the start of the game
     currentQuestionIndex = 0;
     score = 0;
     results = [];
@@ -128,10 +129,8 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
         button.addEventListener('click', selectAnswer);
+        button.addEventListener('touchstart', (e) => e.preventDefault()); // Prevents zoom on double-tap
         answerButtonsElement.appendChild(button);
     });
 }
@@ -144,7 +143,7 @@ function resetState() {
 
 function selectAnswer(e) {
     const selectedButton = e.target;
-    const correct = selectedButton.dataset.correct;
+    const correct = questions[currentQuestionIndex].answers.find(answer => answer.text === selectedButton.innerText).correct;
     results.push({
         question: questions[currentQuestionIndex].question,
         correct: correct,
@@ -171,6 +170,7 @@ function endGame() {
 }
 
 function displayResults() {
+    resultContainer.classList.remove('hide');
     results.forEach(result => {
         const resultElement = document.createElement('div');
         resultElement.innerHTML = `
@@ -181,5 +181,4 @@ function displayResults() {
         `;
         resultContainer.appendChild(resultElement);
     });
-    document.body.appendChild(resultContainer);
 }
