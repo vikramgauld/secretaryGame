@@ -56,11 +56,11 @@ body {
     background-color: #003d99; /* Temporary active state */
 }
 
-.correct {
+.correct-answer {
     color: green;
 }
 
-.wrong {
+.wrong-answer {
     color: red;
 }
 
